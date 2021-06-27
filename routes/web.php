@@ -17,11 +17,18 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->post('/login', 'UserController@login');
+
+
+$router->post('/logout', 'UserController@logout'); //KITA TAMBAHKAN ROUTE LOGOUT SEKALIAN
+
 $router->group(['middleware' => 'auth'], function () use ($router) {
 
     $router->get('/users', 'UserController@index');
 
     $router->post('/users', 'UserController@store');
+
+    $router->get('/users/login', 'UserController@getUserLogin');
 
     $router->get('/users/{id}', 'UserController@edit');
 

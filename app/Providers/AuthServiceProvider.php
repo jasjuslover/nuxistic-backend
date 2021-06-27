@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
 
             if ($request->header('Authorization')) {
                 $explode = explode(' ', $request->header('Authorization'));
-                return User::where('api_token', $explode[1])->first();
+                return User::where('api_token', end($explode))->first();
             }
         });
     }
